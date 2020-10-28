@@ -6,11 +6,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/users")
+
 public class AppUserController {
-    @GetMapping
+    @GetMapping("/test")
     public ModelAndView test(){
         ModelAndView modelAndView = new ModelAndView("test");
+        return modelAndView;
+    }
+
+    @GetMapping("/admin")
+    public ModelAndView test1(){
+        ModelAndView modelAndView = new ModelAndView("admin");
+        return modelAndView;
+    }
+
+    @GetMapping("/user")
+    public ModelAndView test2(){
+        ModelAndView modelAndView = new ModelAndView("user");
         return modelAndView;
     }
 }

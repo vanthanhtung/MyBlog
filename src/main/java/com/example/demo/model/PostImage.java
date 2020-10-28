@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class PostImage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postImage_id;
     private String img;
     @Transient
