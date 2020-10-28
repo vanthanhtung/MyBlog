@@ -30,4 +30,9 @@ public class AppUserController {
     public String accessDenied(){
         return "khongcoquyen";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }
