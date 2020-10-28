@@ -25,4 +25,9 @@ public class AppUserController {
         ModelAndView modelAndView = new ModelAndView("user");
         return modelAndView;
     }
+
+    @GetMapping("/khongcoquyen")
+    public String accessDenied(){
+        return "khongcoquyen";
+    }
 }

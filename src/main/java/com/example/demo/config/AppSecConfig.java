@@ -25,13 +25,11 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService((UserDetailsService) appUserService).passwordEncoder(NoOpPasswordEncoder.getInstance());
-//        auth.userDetailsService((UserDetailsService) appUserService)
-//                .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/","/test", "/khongcoquyen").permitAll()
+        http.authorizeRequests().antMatchers("/","/test").permitAll()
                 .and()
                 .authorizeRequests().antMatchers( "/user/**").hasRole("USER")
                 .and()
