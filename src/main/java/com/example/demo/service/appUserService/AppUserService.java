@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppUserService implements IAppUserService, UserDetailsService {
@@ -35,5 +36,25 @@ public class AppUserService implements IAppUserService, UserDetailsService {
                 user.getPassword(),
                 authorities);
         return userDetails;
+    }
+
+    @Override
+    public Iterable<AppUser> findAll() {
+        return appUserRepository.findAll();
+    }
+
+    @Override
+    public Optional<AppUser> findById(Long id) {
+        return appUserRepository.findById(id);
+    }
+
+    @Override
+    public AppUser save(AppUser appUser) {
+        return appUserRepository.save(appUser);
+    }
+
+    @Override
+    public void remove(Long id) {
+        appUserRepository.deleteById(id);
     }
 }

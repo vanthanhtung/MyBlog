@@ -23,6 +23,8 @@ public class AppUser {
     private String cover;
     private String introduction;
     private String job;
+    private String gender;
+    private String phoneNumber;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
