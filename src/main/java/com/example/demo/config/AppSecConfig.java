@@ -1,9 +1,8 @@
 package com.example.demo.config;
 
-import com.example.demo.service.appUserService.IAppUserService;
+import com.example.demo.service.appUserService.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +19,7 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
     private CustomSuccessHandler customSuccessHandler;
 
     @Autowired
-    public IAppUserService appUserService;
+    public AppUserService appUserService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
