@@ -1,7 +1,7 @@
 package com.example.demo.service.appUserService;
 
 import com.example.demo.model.AppUser;
-import com.example.demo.repository.IAppUserRepository;
+import com.example.demo.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     @Autowired
-    private IAppUserRepository appUserRepository;
+    private AppUserRepository appUserRepository;
 
     @Override
     public AppUser getUserByUsername(String username) {
