@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col">avatar</th>
+        <th scope="col">name</th>
+        <th scope="col">password</th>
+        <th scope="col">dateOfBirth</th>
+        <th scope="col">email</th>
+        <th scope="col">cover</th>
+        <th scope="col">introduction</th>
+        <th scope="col">job</th>
+        <th scope="col">gender</th>
+        <th scope="col">phoneNumber</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="appUser: ${appUser}">
+        <th scope="row"><a th:text="${appUser.appUser_id}"></a></th>
+        <th><a th:text="${appUser.avatar}"></a></th>
+        <th><a th:text="${appUser.name}"></a></th>
+        <th><a th:text="${appUser.password}"></a></th>
+        <th><a th:text="${appUser.dateOfBirth}"></a></th>
+        <th><a th:text="${appUser.email}"></a></th>
+        <th><a th:text="${appUser.cover}"></a></th>
+        <th><a th:text="${appUser.introduction}"></a></th>
+        <th><a th:text="${appUser.job}"></a></th>
+        <th><a th:text="${appUser.gender}"></a></th>
+        <th><a th:text="${appUser.phoneNumber}"></a></th>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

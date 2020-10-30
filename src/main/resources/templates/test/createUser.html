@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/create}" th:object="${appUser}" method="post">
+    <table class="table">
+        <tr>
+            <th>name</th>
+            <th><input type="text" th:field="*{name}"/></th>
+        </tr>
+        <tr>
+            <th>password</th>
+            <th><input type="text" th:field="*{password}"/></th>
+        </tr>
+        <tr>
+            <th>dateOfBirth</th>
+            <th><input type="text" th:field="*{dateOfBirth}"/></th>
+        </tr>
+        <tr>
+            <th>email</th>
+            <th><input type="text" th:field="*{email}"/></th>
+
+        </tr>
+        <tr>
+            <th>avatar</th>
+            <th><input type="file" th:field="*{imgFile}"/></th>
+        </tr>
+        <tr>
+            <th>cover</th>
+            <th><input type="text" th:field="*{cover}"/></th>
+        </tr>
+        <tr>
+            <th>introduction</th>
+            <th><input type="text" th:field="*{introduction}"/></th>
+        </tr>
+        <tr>
+            <th>job</th>
+            <th><input type="text" th:field="*{job}"/></th>
+        </tr>
+        <tr>
+            <th>phoneNumber</th>
+            <th><input type="text" th:field="*{phoneNumber}"/></th>
+        </tr>
+        <tr>
+            <th><input type="submit" value="Create"></th>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
