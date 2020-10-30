@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 @Entity
 @Data
@@ -17,7 +17,7 @@ public class Post {
     private Long post_id;
     private String title;
     private String content;
-    private Timestamp post_date;
+    private Date post_date;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private AppUser appUser;

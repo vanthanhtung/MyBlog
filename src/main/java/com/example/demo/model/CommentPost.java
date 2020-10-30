@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -14,7 +15,7 @@ public class CommentPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comment_id;
-    private Timestamp comment_date;
+    private Date comment_date;
     private String content;
     private String noti;
 

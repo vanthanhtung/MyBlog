@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -17,7 +18,7 @@ public class AppUser {
     private Long appUser_id;
     private String name;
     private String password;
-    private Timestamp dateOfBirth;
+    private Date dateOfBirth;
     private String email;
     private String avatar;
     private String cover;
@@ -25,6 +26,7 @@ public class AppUser {
     private String job;
     private String gender;
     private String phoneNumber;
+    private boolean isActive;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")

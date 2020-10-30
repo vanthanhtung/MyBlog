@@ -51,6 +51,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("/userPage");
         Optional<Role> role = roleService.findById((long)2);
         appUser.setRole(role.get());
+        appUser.setActive(true);
         appUserService.save(appUser);
         modelAndView.addObject("appUser",appUser);
         return modelAndView;

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -14,7 +15,7 @@ public class LikePost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long like_id;
-    private Timestamp like_date;
+    private Date like_date;
     private String noti;
 
     @ManyToOne
