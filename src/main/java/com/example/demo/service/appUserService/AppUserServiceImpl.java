@@ -1,6 +1,7 @@
 package com.example.demo.service.appUserService;
 
 import com.example.demo.model.AppUser;
+import com.example.demo.model.Role;
 import com.example.demo.repository.IAppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +24,13 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     public AppUser getUserByUsername(String username) {
         return appUserRepository.findByName(username);
     }
-    
+
+    @Override
+    public Iterable<AppUser> getAllByRoleId(Long id) {
+        return appUserRepository.getAllByRoleId(id);
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = this.getUserByUsername(username);
