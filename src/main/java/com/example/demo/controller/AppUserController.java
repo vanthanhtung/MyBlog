@@ -20,4 +20,13 @@ public class AppUserController {
         return modelAndView;
     }
 
+    @GetMapping("/khongcoquyen")
+    public String accessDenied(){
+        return "khongcoquyen";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }
