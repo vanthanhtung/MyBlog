@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,7 +50,7 @@
 				</li>
 				<li><span>Time Line</span>
 					<ul>
-						<li><a href="time-line.html" title="">timeline</a></li>
+						<li><a href="home.html" title="">timeline</a></li>
 						<li><a href="timeline-friends.html" title="">timeline friends</a></li>
 						<li><a href="timeline-groups.html" title="">timeline groups</a></li>
 						<li><a href="timeline-pages.html" title="">timeline pages</a></li>
@@ -229,7 +227,7 @@
 				<li>
 					<a href="#" title="">timeline</a>
 					<ul>
-						<li><a href="time-line.html" title="">timeline</a></li>
+						<li><a href="home.html" title="">timeline</a></li>
 						<li><a href="timeline-friends.html" title="">timeline friends</a></li>
 						<li><a href="timeline-groups.html" title="">timeline groups</a></li>
 						<li><a href="timeline-pages.html" title="">timeline pages</a></li>
@@ -470,11 +468,14 @@
 						<div class="timeline-info">
 							<ul>
 								<li class="admin-name">
-								  <h5>Janice Griffith</h5>
+									<form th:object="${user}">
+										<h5 th:field="*{name}"></h5>
+									</form>
+
 								  <span>Group Admin</span>
 								</li>
 								<li>
-									<a class="active" href="time-line.html" title="" data-ripple="">time line</a>
+									<a class="active" href="home.html" title="" data-ripple="">time line</a>
 									<a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
 									<a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
 									<a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
@@ -592,35 +593,35 @@
 											<li>
 												<figure><img src="images/resources/friend-avatar2.jpg" alt=""></figure>
 												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
+													<h4><a href="home.html" title="">Kelly Bill</a></h4>
 													<a href="#" title="" class="underline">Add Friend</a>
 												</div>
 											</li>
 											<li>
 												<figure><img src="images/resources/friend-avatar4.jpg" alt=""></figure>
 												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Issabel</a></h4>
+													<h4><a href="home.html" title="">Issabel</a></h4>
 													<a href="#" title="" class="underline">Add Friend</a>
 												</div>
 											</li>
 											<li>
 												<figure><img src="images/resources/friend-avatar6.jpg" alt=""></figure>
 												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Andrew</a></h4>
+													<h4><a href="home.html" title="">Andrew</a></h4>
 													<a href="#" title="" class="underline">Add Friend</a>
 												</div>
 											</li>
 											<li>
 												<figure><img src="images/resources/friend-avatar8.jpg" alt=""></figure>
 												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Sophia</a></h4>
+													<h4><a href="home.html" title="">Sophia</a></h4>
 													<a href="#" title="" class="underline">Add Friend</a>
 												</div>
 											</li>
 											<li>
 												<figure><img src="images/resources/friend-avatar3.jpg" alt=""></figure>
 												<div class="friend-meta">
-													<h4><a href="time-line.html" title="">Allen</a></h4>
+													<h4><a href="home.html" title="">Allen</a></h4>
 													<a href="#" title="" class="underline">Add Friend</a>
 												</div>
 											</li>
@@ -680,7 +681,7 @@
 													<img src="images/resources/friend-avatar10.jpg" alt="">
 												</figure>
 												<div class="friend-name">
-													<ins><a href="time-line.html" title="">Janice Griffith</a></ins>
+													<ins><a href="home.html" title="">Janice Griffith</a></ins>
 													<span>published: june,2 2018 19:PM</span>
 												</div>
 												<div class="description">
@@ -771,7 +772,7 @@
 													<img src="images/resources/friend-avatar10.jpg" alt="">
 												</figure>
 												<div class="friend-name">
-													<ins><a href="time-line.html" title="">Janice Griffith</a></ins>
+													<ins><a href="home.html" title="">Janice Griffith</a></ins>
 													<span>published: june,2 2018 19:PM</span>
 												</div>
 												<div class="post-meta">
@@ -854,7 +855,7 @@
 														</div>
 														<div class="we-comment">
 															<div class="coment-head">
-																<h5><a href="time-line.html" title="">Jason borne</a></h5>
+																<h5><a href="home.html" title="">Jason borne</a></h5>
 																<span>1 year ago</span>
 																<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 															</div>
@@ -867,7 +868,7 @@
 																</div>
 																<div class="we-comment">
 																	<div class="coment-head">
-																		<h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
+																		<h5><a href="home.html" title="">alexendra dadrio</a></h5>
 																		<span>1 month ago</span>
 																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																	</div>
@@ -880,7 +881,7 @@
 																</div>
 																<div class="we-comment">
 																	<div class="coment-head">
-																		<h5><a href="time-line.html" title="">Olivia</a></h5>
+																		<h5><a href="home.html" title="">Olivia</a></h5>
 																		<span>16 days ago</span>
 																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																	</div>
@@ -895,7 +896,7 @@
 														</div>
 														<div class="we-comment">
 															<div class="coment-head">
-																<h5><a href="time-line.html" title="">Donald Trump</a></h5>
+																<h5><a href="home.html" title="">Donald Trump</a></h5>
 																<span>1 week ago</span>
 																<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 															</div>
@@ -946,7 +947,7 @@
 													<img src="images/resources/friend-avatar10.jpg" alt="">
 												</figure>
 												<div class="friend-name">
-													<ins><a href="time-line.html" title="">Janice Griffith</a></ins>
+													<ins><a href="home.html" title="">Janice Griffith</a></ins>
 													<span>published: june,2 2018 19:PM</span>
 												</div>
 												<div class="post-meta">
@@ -1029,7 +1030,7 @@
 														</div>
 														<div class="we-comment">
 															<div class="coment-head">
-																<h5><a href="time-line.html" title="">Jason borne</a></h5>
+																<h5><a href="home.html" title="">Jason borne</a></h5>
 																<span>1 year ago</span>
 																<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 															</div>
@@ -1043,7 +1044,7 @@
 														</div>
 														<div class="we-comment">
 															<div class="coment-head">
-																<h5><a href="time-line.html" title="">Sophia</a></h5>
+																<h5><a href="home.html" title="">Sophia</a></h5>
 																<span>1 week ago</span>
 																<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 															</div>
@@ -1117,7 +1118,7 @@
 													<span class="status f-online"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">bucky barnes</a>
+													<a href="home.html">bucky barnes</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4136282f352433322e2d25243301262c20282d6f222e2c">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1127,7 +1128,7 @@
 													<span class="status f-away"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
+													<a href="home.html">Sarah Loren</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a585b48545f497a5d575b535614595557">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1137,7 +1138,7 @@
 													<span class="status f-off"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">jason borne</a>
+													<a href="home.html">jason borne</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="127873617d7c7052757f737b7e3c717d7f">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1147,7 +1148,7 @@
 													<span class="status f-off"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">Cameron diaz</a>
+													<a href="home.html">Cameron diaz</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="620803110d0c0022050f030b0e4c010d0f">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1158,7 +1159,7 @@
 													<span class="status f-online"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
+													<a href="home.html">daniel warber</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0963687a66676b496e64686065276a6664">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1169,7 +1170,7 @@
 													<span class="status f-away"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">andrew</a>
+													<a href="home.html">andrew</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b313a283435391b3c363a323775383436">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1180,7 +1181,7 @@
 													<span class="status f-off"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">amy watson</a>
+													<a href="home.html">amy watson</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="472d263428292507202a262e2b6924282a">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1191,7 +1192,7 @@
 													<span class="status f-online"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">daniel warber</a>
+													<a href="home.html">daniel warber</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a101b091514183a1d171b131654191517">[email&#160;protected]</a></i>
 												</div>
 											</li>
@@ -1202,7 +1203,7 @@
 													<span class="status f-away"></span>
 												</figure>
 												<div class="friendz-meta">
-													<a href="time-line.html">Sarah Loren</a>
+													<a href="home.html">Sarah Loren</a>
 													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c1e1d0e12190f3c1b111d1510521f1311">[email&#160;protected]</a></i>
 												</div>
 											</li>

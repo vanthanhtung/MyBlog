@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
+
 @Controller
 public class HomeController {
 
@@ -22,9 +23,15 @@ public class HomeController {
     @Autowired
     private RoleService roleService;
 
-    @GetMapping("/khongcoquyen")
+    @GetMapping("khongcoquyen")
     public String accessDenied(){
         return "khongcoquyen";
+    }
+
+    @GetMapping("/")
+    public ModelAndView login1(){
+        ModelAndView modelAndView = new ModelAndView("login");
+        return modelAndView;
     }
 
     @GetMapping("/login")
@@ -42,6 +49,8 @@ public class HomeController {
     @PostMapping("/register")
     public ModelAndView createNewUser(@ModelAttribute("appUser") AppUser appUser){
         ModelAndView modelAndView = new ModelAndView("/userPage");
+        Optional<Role> role = roleService.findById((long) 2);
+        appUser.setRole(role.get());
         appUserService.save(appUser);
         modelAndView.addObject("appUser",appUser);
         return modelAndView;
