@@ -19,10 +19,7 @@ public class AppUserController {
     @GetMapping("")
     public ModelAndView home(@ModelAttribute String username){
         ModelAndView modelAndView = new ModelAndView("home");
-        AppUser user = appUserService.getUserByUsername(username);
-        if (user != null){
-            modelAndView.addObject("user",user);
-        }
+        modelAndView.addObject("user", appUserService.getCurrentUser());
         return modelAndView;
     }
 

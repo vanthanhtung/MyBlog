@@ -5,4 +5,5 @@ import com.example.demo.service.GeneralService;
 
 public interface AppUserService extends GeneralService<AppUser> {
     AppUser getUserByUsername(String username);
+    AppUser getCurrentUser();
 }
