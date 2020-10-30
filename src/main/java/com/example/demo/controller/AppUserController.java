@@ -8,11 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 
 public class AppUserController {
-    @GetMapping("/test")
-    public ModelAndView test(){
-        ModelAndView modelAndView = new ModelAndView("test");
-        return modelAndView;
-    }
+//    @GetMapping("/test")
+//    public ModelAndView test(){
+//        ModelAndView modelAndView = new ModelAndView("test");
+//        return modelAndView;
+//    }
 
     @GetMapping("/admin")
     public ModelAndView test1(){
