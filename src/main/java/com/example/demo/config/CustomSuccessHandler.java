@@ -53,7 +53,6 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         } else {
             url = "/khongcoquyen";
         }
-
         return url;
     }
 

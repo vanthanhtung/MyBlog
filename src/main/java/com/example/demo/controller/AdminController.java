@@ -9,9 +9,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @GetMapping
+    @GetMapping("")
     public ModelAndView test1(){
         ModelAndView modelAndView = new ModelAndView("adminPage");
         return modelAndView;
+    }
+
+    @GetMapping("/khongcoquyen")
+    public String accessDenied(){
+        return "khongcoquyen";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }
