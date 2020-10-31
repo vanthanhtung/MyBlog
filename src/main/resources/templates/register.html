@@ -38,12 +38,14 @@
                                 <div class="input-group">
                                     <label class="label">Full name</label>
                                     <input class="input--style-4" type="text" name="first_name" th:field="*{name}">
+                                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Password</label>
                                     <input class="input--style-4" type="text" name="last_name" th:field="*{password}">
+                                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
                                 </div>
                             </div>
                         </div>
@@ -52,8 +54,7 @@
                                 <div class="input-group">
                                     <label class="label">Birthday</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                        <input type="date" name="birthday" th:field="*{dateOfBirth}">
                                     </div>
                                 </div>
                             </div>
@@ -78,12 +79,14 @@
                                 <div class="input-group">
                                     <label class="label">Email</label>
                                     <input class="input--style-4" type="text" name="email" th:field="*{email}">
+                                    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Phone Number</label>
                                     <input class="input--style-4" type="text" name="phone" th:field="*{phoneNumber}">
+                                    <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></td>
                                 </div>
                             </div>
                         </div>
