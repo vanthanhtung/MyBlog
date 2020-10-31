@@ -1,15 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.AppUser;
+import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
 import com.example.demo.service.appUserService.AppUserService;
 import com.example.demo.service.postService.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -36,6 +34,12 @@ public class AppUserController {
         return listPost;
     }
 
+    @ModelAttribute("comment")
+    public CommentPost newComment(){
+        CommentPost comment = new CommentPost();
+        return comment;
+    }
+
     @ModelAttribute("user")
     public AppUser currenUser(){
         return appUserService.getCurrentUser();
@@ -47,6 +51,21 @@ public class AppUserController {
         postService.save(post);
         ModelAndView modelAndView = new ModelAndView("redirect:/users");
         return modelAndView;
+    }
+    
+    @PostMapping("/creat/comment")
+    public ModelAndView homeComment( @ModelAttribute("idPost") Long id,  @ModelAttribute("content") String content){
+        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        Post post = postService.findById(id).get();
+        List<CommentPost> comments = post.getCommentPosts();
+        CommentPost commentPost = new CommentPost();
+        commentPost.setContent(content);
+        commentPost.setAppUser(appUserService.getCurrentUser());
+        comments.add(commentPost);
+        post.setCommentPosts(comments);
+        postService.save(post);
+
+     return modelAndView;
     }
 
     @GetMapping()

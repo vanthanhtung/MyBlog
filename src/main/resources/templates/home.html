@@ -384,17 +384,10 @@
 												</div>
 											</div>
 										</div><!-- add post new box -->
-<!--									<div class="central-meta item">-->
-<!--									<th:block th:each="posts : ${listPost}">-->
-<!--										<div>-->
-<!--											<p th:text="${posts.getAppUser().name}"></p>-->
-<!--											<p th:text="${posts.getContent()}"></p>-->
-<!--										</div>-->
-<!--									</th:block>-->
-<!--									</div>-->
 
 									<th:block th:each="posts : ${listPost}">
 										<div class="central-meta item">
+
 											<div class="user-post">
 												<div class="friend-info">
 													<figure>
@@ -470,7 +463,9 @@
 														</div>
 													</div>
 												</div>
-												<div class="coment-area">
+
+
+												<div class="coment-area" >
 													<ul class="we-comet">
 														<li>
 															<div class="comet-avatar">
@@ -490,8 +485,9 @@
 																<img src="#" alt="">
 															</div>
 															<div class="post-comt-box">
-																<form method="post">
-																	<textarea placeholder="Post your comment"></textarea>
+																<form method="post" action="/users/creat/comment">
+																	<input name="idPost" th:value="${posts.getPost_id()}"/>
+																	<textarea name="content" placeholder="Post your comment"></textarea>
 																	<div class="add-smiles">
 																		<span class="em em-expressionless" title="add icon"></span>
 																	</div>
@@ -509,7 +505,7 @@
 																		<i class="em em-rage"></i>
 																		<i class="em em-stuck_out_tongue"></i>
 																	</div>
-																	<button type="submit"></button>
+																	<button type="submit">comment</button>
 																</form>
 															</div>
 														</li>
@@ -517,8 +513,8 @@
 												</div>
 											</div>
 										</div>
-									</th:block>
 
+									</th:block>
 
 
 
@@ -528,7 +524,7 @@
 							<div class="col-lg-3">
 								<aside class="sidebar static">
 									<div class="widget friend-list stick-widget">
-										<h4 class="widget-title">Friends</h4>
+										<h4 class="widget-title">Follower</h4>
 										<div id="searchDir"></div>
 										<ul id="people-list" class="friendz-list">
 											<li>

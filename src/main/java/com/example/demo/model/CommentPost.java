@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +20,10 @@ public class CommentPost {
     private String content;
     private String noti;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JsonIgnoreProperties(value = {"commentPost"})
+//    @JoinColumn(name = "post_id")
+//    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "appUser_id")
