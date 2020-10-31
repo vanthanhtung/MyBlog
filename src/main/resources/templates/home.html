@@ -467,26 +467,28 @@
 
 												<div class="coment-area" >
 													<ul class="we-comet">
-														<li>
-															<div class="comet-avatar">
-																<img src="images/resources/comet-1.jpg" alt="">
-															</div>
-															<div class="we-comment">
-																<div class="coment-head">
-																	<h5><a href="time-line.html" title="">Jason borne</a></h5>
-																	<span>1 year ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+														<th:block th:each="commentt : ${posts.getCommentPosts()}">
+															<li>
+																<div class="comet-avatar">
+																	<img src="images/resources/comet-1.jpg" alt="">
 																</div>
-																<p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
-															</div>
-														</li>
+																<div class="we-comment">
+																	<div class="coment-head">
+																		<h5><a href="#" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
+																		<span>thời gian comment</span>
+																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+																	</div>
+																	<p th:text="*{commentt.content}"></p>
+																</div>
+															</li>
+														</th:block>
 														<li class="post-comment">
 															<div class="comet-avatar">
 																<img src="#" alt="">
 															</div>
 															<div class="post-comt-box">
 																<form method="post" action="/users/creat/comment">
-																	<input name="idPost" th:value="${posts.getPost_id()}"/>
+																	<input hidden name="idPost" th:value="${posts.getPost_id()}"/>
 																	<textarea name="content" placeholder="Post your comment"></textarea>
 																	<div class="add-smiles">
 																		<span class="em em-expressionless" title="add icon"></span>

@@ -20,10 +20,10 @@ public class CommentPost {
     private String content;
     private String noti;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JsonIgnoreProperties(value = {"commentPost"})
-//    @JoinColumn(name = "post_id")
-//    private Post post;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(value = {"commentPost"})
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "appUser_id")

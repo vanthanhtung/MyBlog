@@ -4,6 +4,7 @@ import com.example.demo.model.AppUser;
 import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
 import com.example.demo.service.appUserService.AppUserService;
+import com.example.demo.service.commentService.CommentPostService;
 import com.example.demo.service.postService.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class AppUserController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private CommentPostService commentPostService;
 
     @ModelAttribute("post")
     public Post newPost(){
@@ -52,21 +56,41 @@ public class AppUserController {
         ModelAndView modelAndView = new ModelAndView("redirect:/users");
         return modelAndView;
     }
-    
+
+
     @PostMapping("/creat/comment")
     public ModelAndView homeComment( @ModelAttribute("idPost") Long id,  @ModelAttribute("content") String content){
         ModelAndView modelAndView = new ModelAndView("redirect:/users");
         Post post = postService.findById(id).get();
-        List<CommentPost> comments = post.getCommentPosts();
-        CommentPost commentPost = new CommentPost();
+
+        CommentPost commentPost = new CommentPost();//tạo comment lưu và database. rồi mới xét lại commment cho post
         commentPost.setContent(content);
         commentPost.setAppUser(appUserService.getCurrentUser());
-        comments.add(commentPost);
-        post.setCommentPosts(comments);
+        commentPost.setPost(post);
+        commentPostService.save(commentPost);
+
+        post.setCommentPosts((List<CommentPost>) commentPostService.getAllByPost(post));
         postService.save(post);
 
-     return modelAndView;
+        return modelAndView;
     }
+
+
+
+//    @PostMapping("/creat/comment")
+//    public ModelAndView homeComment( @ModelAttribute("idPost") Long id,  @ModelAttribute("content") String content){
+//        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+//        Post post = postService.findById(id).get();
+//        List<CommentPost> comments = post.getCommentPosts();
+//        CommentPost commentPost = new CommentPost();//tạo comment lưu và database. rồi mới xét lại commment cho post
+//        commentPost.setContent(content);
+//        commentPost.setAppUser(appUserService.getCurrentUser());
+//        comments.add(commentPost);
+//        post.setCommentPosts(comments);
+//        postService.save(post);
+//
+//     return modelAndView;
+//    }
 
     @GetMapping()
     public ModelAndView home(@ModelAttribute String username){

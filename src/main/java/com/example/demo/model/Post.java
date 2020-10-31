@@ -25,7 +25,10 @@ public class Post {
     @JoinColumn(name = "user_id")
     private AppUser appUser;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "post",fetch = FetchType.EAGER,targetEntity = CommentPost.class)
+    @JsonIgnoreProperties(value = {"post"})
     List<CommentPost> commentPosts;
+
 
 }

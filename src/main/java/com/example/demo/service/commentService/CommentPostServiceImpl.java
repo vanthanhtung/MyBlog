@@ -1,6 +1,7 @@
 package com.example.demo.service.commentService;
 
 import com.example.demo.model.CommentPost;
+import com.example.demo.model.Post;
 import com.example.demo.repository.CommentPostRepository;
 import com.example.demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,12 @@ public class CommentPostServiceImpl implements CommentPostService {
     public void remove(Long id) {
         commentPostRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<CommentPost> getAllByPost(Post post) {
+        return commentPostRepository.getAllByPost(post);
+    }
+
 
 //    @Override
 //    public Iterable<CommentPost> getAllByPostPost_id(Long id) {
