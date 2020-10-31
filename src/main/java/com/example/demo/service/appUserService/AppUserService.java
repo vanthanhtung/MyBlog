@@ -11,4 +11,6 @@ public interface AppUserService extends GeneralService<AppUser> {
     AppUser getUserByUsername(String username);
 
     Iterable<AppUser> getAllByRoleId(Long id);
+
+    AppUser getCurrentUser();
 }

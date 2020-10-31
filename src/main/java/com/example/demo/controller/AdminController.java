@@ -42,7 +42,7 @@ public class AdminController {
 
     @GetMapping("/blockUser/{id}")
     public ModelAndView blockUser(@PathVariable Long id){
-        ModelAndView modelAndView = new ModelAndView("adminPage");
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin");
         Optional<AppUser> currentUser = appUserService.findById(id);
         AppUser currentUser1 = currentUser.get();
         Role role = roleService.getById((long) 3);
