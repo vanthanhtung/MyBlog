@@ -60,6 +60,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public Iterable<AppUser> getAllByRoleIsNotContaining(Long id) {
+        return appUserRepository.getAllByRoleIsNotContaining(id);
+    }
+
+    @Override
     public Iterable<AppUser> findAll() {
         return appUserRepository.findAll();
     }

@@ -3,6 +3,7 @@ package com.example.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -28,10 +29,14 @@ public class AppUser {
     private Date dateOfBirth;
 
     @Email
-    @NotBlank (message = "Invalid email. Must be abc@xyz.com")
+    @NotBlank (message = "should look like an email address")
     private String email;
+
     private String avatar;
-    private String cover;
+    @Transient
+    private MultipartFile avatarFile;
+    @Transient
+    private MultipartFile cover;
     private String introduction;
     private String job;
     private String gender;
@@ -39,7 +44,8 @@ public class AppUser {
     @Pattern(regexp = "0+[0-9]{9}")
     @NotBlank(message = "Invalid phone number")
     private String phoneNumber;
-    private boolean isActive;
+
+    private String isActive;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")

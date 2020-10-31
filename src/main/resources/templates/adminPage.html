@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>User Management</title>
     <meta charset="UTF-8">
@@ -22,6 +22,8 @@
     <!--===============================================================================================-->
 </head>
 <body>
+<h1 style="align-content: center">Hello Admin</h1>
+</br>
                     <table class="table">
                         <thead class="thead-dark">
                         <tr>
@@ -32,7 +34,8 @@
                             <th scope="col">Job</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Phone Number</th>
-                            <th scope="col">Block User</th>
+                            <th scope="col">Is active</th>
+                            <th scope="col">Block / Unblock User</th>
                         </tr>
                         </thead>
                         <th:block th:each="user: ${listUsers}">
@@ -45,7 +48,11 @@
                             <td th:text="${user.getJob()}"></td>
                             <td th:text="${user.getGender()}"></td>
                             <td th:text="${user.getPhoneNumber()}"></td>
-                            <td><a th:href="@{/admin/blockUser/__${user.getAppUser_id()}__}">Block</a></td>
+                            <td th:text="${user.getIsActive()}"></td>
+                            <td>
+                                <a th:href="@{/admin/blockUser/__${user.getAppUser_id()}__}">Block</a>
+                                <a th:href="@{/admin/unBlockUser/__${user.getAppUser_id()}__}">Unblock</a>
+                            </td>
                         </tr>
                         </tbody>
                         </th:block>

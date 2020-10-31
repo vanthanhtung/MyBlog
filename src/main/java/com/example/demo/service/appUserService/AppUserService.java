@@ -13,4 +13,6 @@ public interface AppUserService extends GeneralService<AppUser> {
     Iterable<AppUser> getAllByRoleId(Long id);
 
     AppUser getCurrentUser();
+
+    Iterable<AppUser> getAllByRoleIsNotContaining(Long id);
 }

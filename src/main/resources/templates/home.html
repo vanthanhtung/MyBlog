@@ -220,11 +220,11 @@
 						<div class="user-avatar">
 							<figure>
 								<img src="images/resources/user-avatar.jpg" alt="">
-								<form class="edit-phto">
+								<form class="edit-phto" th:action="@{/users/avatar}" th:object="${user}" method="get">
 									<i class="fa fa-camera-retro"></i>
 									<label class="fileContainer">
 										Edit Display Photo
-										<input type="file"/>
+										<input type="file" th:field="*{avatarFile}"/>
 									</label>
 								</form>
 							</figure>

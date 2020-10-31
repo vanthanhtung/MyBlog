@@ -30,7 +30,7 @@ public class AdminController {
     private RoleService roleService;
 
     @GetMapping("")
-    public ModelAndView test1(){
+    public ModelAndView adminPage(){
         ModelAndView modelAndView = new ModelAndView("adminPage");
         modelAndView.addObject("listUsers",appUserService.getAllByRoleId((long) 2));
         return modelAndView;
@@ -53,7 +53,7 @@ public class AdminController {
         AppUser currentUser1 = currentUser.get();
         Role role = roleService.getById((long) 3);
         currentUser1.setRole(role);
-        currentUser1.setActive(false);
+        currentUser1.setIsActive("false");
         appUserService.save(currentUser1);
         modelAndView.addObject("listUsers",appUserService.getAllByRoleId((long) 2));
         return modelAndView;
