@@ -6,6 +6,8 @@ import com.example.demo.service.appUserService.AppUserService;
 import com.example.demo.service.roleService.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,14 +43,18 @@ public class HomeController {
 
     @GetMapping("/register")
     public ModelAndView showRegisterForm(){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("register");
         modelAndView.addObject("appUser",new AppUser());
         return modelAndView;
     }
 
     @PostMapping("/register")
-    public ModelAndView createNewUser(@ModelAttribute("appUser") AppUser appUser){
-        ModelAndView modelAndView = new ModelAndView("/userPage");
+    public ModelAndView createNewUser(@Validated @ModelAttribute("appUser") AppUser appUser, BindingResult bindingResult){
+        if (bindingResult.hasFieldErrors()){
+            ModelAndView modelAndView = new ModelAndView("register");
+            return modelAndView;
+        }
+        ModelAndView modelAndView = new ModelAndView("login");
         Optional<Role> role = roleService.findById((long)2);
         appUser.setRole(role.get());
         appUser.setActive(true);
