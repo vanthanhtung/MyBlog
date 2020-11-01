@@ -246,7 +246,7 @@
 											</li>
 											<li>
 												<i class="ti-power-off"></i>
-												<a href="landing.html" title="">Logout</a>
+												<a href="/logout" title="">Logout</a>
 											</li>
 										</ul>
 									</div><!-- Shortcuts -->
@@ -322,9 +322,6 @@
 									</div>
 								</div><!-- add post new box -->
 								<div class="loadMore">
-
-
-
 									<th:block th:each="posts : ${listPost}">
 										<div class="central-meta item">
 
@@ -341,7 +338,7 @@
 														<p th:text="*{posts.getContent()}"></p>
 													</div>
 													<div class="post-meta">
-														<img src="#" alt="">
+														<img th:src="${posts.getPostImage()}" alt="">
 														<div class="we-video-info">
 															<ul>
 																<li>

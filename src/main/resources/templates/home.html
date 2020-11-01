@@ -207,11 +207,14 @@
 				<span>1205 followers</span>
 				<a href="#" title="" data-ripple="">Add Friend</a>
 			</div>
-			<form class="edit-phto">
+			<form class="edit-phto" th:action="@{/users/cover}" method="post" enctype="multipart/form-data">
 				<i class="fa fa-camera-retro"></i>
 				<label class="fileContainer">
 					Edit Cover Photo
-				<input type="file"/>
+				<input type="file" name="cover"/>
+				</label>
+				<label class="fileContainer">
+					<input type="submit" value="submit">
 				</label>
 			</form>
 			<div class="container-fluid">
@@ -225,8 +228,9 @@
 									<label class="fileContainer">
 										Edit Display Photo
 										<input type="file" name="avatar"/>
-										<input type="submit" value="submit">
 									</label>
+<!--									<input type="submit" value="submit" class="btn&#45;&#45;blue">-->
+									<button type="submit" class="btn btn-success">Submit</button>
 								</form>
 							</figure>
 						</div>
@@ -239,7 +243,7 @@
 
 								</li>
 								<li>
-									<a class="active" href="home.html" title="" data-ripple="">time line</a>
+									<a class="active" href="/users/timeline" title="" data-ripple="">time line</a>
 									<a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
 									<a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
 									<a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
@@ -268,7 +272,7 @@
 										<ul class="naves">
 											<li>
 												<i class="ti-clipboard"></i>
-												<a href="newsfeed.html" title="">News feed</a>
+												<a href="/users/timeline" title="">News feed</a>
 											</li>
 											<li>
 												<i class="ti-mouse-alt"></i>
@@ -308,7 +312,7 @@
 											</li>
 											<li>
 												<i class="ti-power-off"></i>
-												<a href="landing.html" title="">Logout</a>
+												<a href="/logout" title="">Logout</a>
 											</li>
 										</ul>
 									</div><!-- Shortcuts -->
@@ -643,10 +647,10 @@
 					<div class="widget">
 						<div class="widget-title"><h4>follow</h4></div>
 						<ul class="list-style">
-							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en" title="">twitter</a></li>
-							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en" title="">instagram</a></li>
-							<li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover" title="">Google+</a></li>
+							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/" title="">facebook</a></li>
+							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/" title="">twitter</a></li>
+							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/" title="">instagram</a></li>
+							<li><i class="fa fa-google-plus-square"></i> <a href="https://google.com/" title="">Google+</a></li>
 							<li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/" title="">Pintrest</a></li>
 						</ul>
 					</div>
