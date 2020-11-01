@@ -11,4 +11,6 @@ public interface IAppUserRepository extends CrudRepository<AppUser, Long> {
     Iterable<AppUser> getAllByRoleId(Long id);
 
     Iterable<AppUser> getAllByRoleIsNotContaining(Long id);
+
+    Iterable<AppUser> getAllByNameIsContaining(String name);
 }

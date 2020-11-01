@@ -10,18 +10,14 @@ import com.example.demo.service.commentService.CommentPostService;
 import com.example.demo.service.postService.PostService;
 import com.example.demo.service.roleService.RoleService;
 import org.cloudinary.json.JSONObject;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.nio.file.Files;
-import java.sql.Timestamp;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 

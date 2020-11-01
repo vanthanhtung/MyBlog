@@ -11,6 +11,7 @@ package com.example.demo.controller;
         import org.springframework.web.bind.annotation.*;
         import org.springframework.web.servlet.ModelAndView;
 
+        import java.util.Iterator;
         import java.util.List;
 
 @Controller
@@ -78,6 +79,32 @@ public class AppUserFreindController {
         post.setCommentPosts((List<CommentPost>) commentPostService.getAllByPost(post));
         postService.save(post);
 
+        return modelAndView;
+    }
+
+    @GetMapping("/search")
+    public ModelAndView formSearch(){
+        ModelAndView modelAndView = new ModelAndView("resultSearch");
+        return modelAndView;
+    }
+
+    @PostMapping("/search")
+    public ModelAndView resultSearch(@ModelAttribute("searchname") String name){
+        ModelAndView modelAndView = new ModelAndView("resultSearch");
+        Iterable <AppUser> listUser = appUserService.getAllByNameIsContaining(name);
+        modelAndView.addObject("listUserSearchByName", listUser);
+        String message = "kết quả tìm kiếm: " +'"'+ name + '"';
+        modelAndView.addObject("stringSearch", message);
+        return modelAndView;
+    }
+
+    @GetMapping("/search/{id}")
+    public ModelAndView searchUserbyId(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("friendHome");
+        AppUser user = appUserService.findById(id).get();
+        modelAndView.addObject("searchUserById", user);
+        Iterable<Post> listPost = postService.getAllByAppUser(user);
+        modelAndView.addObject("searchListPostById", listPost);
         return modelAndView;
     }
 

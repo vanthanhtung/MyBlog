@@ -65,6 +65,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public Iterable<AppUser> getAllByNameIsContaining(String name) {
+        return appUserRepository.getAllByNameIsContaining(name);
+    }
+
+    @Override
     public Iterable<AppUser> findAll() {
         return appUserRepository.findAll();
     }

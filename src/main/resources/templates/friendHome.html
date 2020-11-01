@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/color.css">
     <link rel="stylesheet" href="/css/responsive.css">
-	<title th:text="${user.name}"></title>
+	<title th:text="${searchUserById.name}"></title>
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
@@ -220,14 +220,6 @@
 						<div class="user-avatar">
 							<figure>
 								<img th:src="${user.getAvatar()}" alt="">
-								<form class="edit-phto" th:action="@{/users/avatar}" method="post" enctype="multipart/form-data">
-									<i class="fa fa-camera-retro"></i>
-									<label class="fileContainer">
-										Edit Display Photo
-										<input type="file" name="avatar"/>
-										<input type="submit" value="submit">
-									</label>
-								</form>
 							</figure>
 						</div>
 					</div>
@@ -235,7 +227,7 @@
 						<div class="timeline-info">
 							<ul>
 								<li class="admin-name">
-									<h5 th:href="@{/users/timeline/search/__${user.getAppUser_id()}__}" th:text="${user.name}"></h5>
+									<h5><a th:href="@{/users/timeline/search/__${searchUserById.getAppUser_id()}__}"th:text="${searchUserById.name}"></a></h5>
 
 								</li>
 								<li>
@@ -341,189 +333,145 @@
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
 								<div class="loadMore">
-
 									<div class="central-meta item">
-											<div class="new-postbox">
-												<figure>
-													<img src="images/resources/admin2.jpg" alt="">
-												</figure>
-												<div class="newpst-input">
-													<form method="post" action="/users/creat/post" th:object="${post}">
-														<textarea th:field="*{content}" rows="2" placeholder="write something"></textarea>
-														<div class="attachments">
-															<ul>
-																<li>
-																	<i class="fa fa-music"></i>
-																	<label  class="fileContainer">
-																		<input type="file">
-																	</label>
-																</li>
-																<li>
-																	<i class="fa fa-image"></i>
-																	<label class="fileContainer">
-																		<input type="file">
-																	</label>
-																</li>
-																<li>
-																	<i class="fa fa-video-camera"></i>
-																	<label class="fileContainer">
-																		<input type="file">
-																	</label>
-																</li>
-																<li>
-																	<i class="fa fa-camera"></i>
-																	<label class="fileContainer">
-																		<input type="file">
-																	</label>
-																</li>
-																<li>
-																	<button type="submit">Publish</button>
-																</li>
-															</ul>
+										<th:block th:each="theyPosts : ${searchListPostById}">
+											<div class="central-meta item">
+												<div class="user-post">
+													<div class="friend-info">
+														<figure>
+															<img src="#" alt="">
+														</figure>
+														<div class="friend-name">
+															<ins><a th:href="@{/users/timeline/search/__${theyPosts.getAppUser().getAppUser_id()}__}" title="" th:text="*{theyPosts.getAppUser().name}"></a></ins>
+															<span>thời gian đăng bài</span>
 														</div>
-													</form>
-												</div>
-											</div>
-										</div><!-- add post new box -->
+														<div class="description">
+															<p th:text="*{theyPosts.getContent()}"></p>
+														</div>
+														<div class="post-meta">
+															<img src="#" alt="">
+															<div class="we-video-info">
+																<ul>
+																	<li>
+																	<span class="like" data-toggle="tooltip" title="like">
+																		<i class="ti-heart"></i>
+																		<ins>2.2k</ins>
+																	</span>
+																	</li>
+																	<li>
+																	<span class="dislike" data-toggle="tooltip" title="dislike">
+																		<i class="ti-heart-broken"></i>
+																		<ins>dislike</ins>
+																	</span>
+																	</li>
+																	<li>
+																	<span class="comment" data-toggle="tooltip" title="Comments">
+																		<i class="fa fa-comments-o"></i>
+																		<ins>số comment</ins>
+																	</span>
+																	</li>
 
-									<th:block th:each="myPosts : ${myListPost}">
-										<div class="central-meta item">
+	<!--																-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+																	<li class="social-media">
+																		<div class="menu">
+																			<div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
+																				</div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
+																				</div>
+																			</div>
+																			<div class="rotater">
+																				<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
+																				</div>
+																			</div>
 
-											<div class="user-post">
-												<div class="friend-info">
-													<figure>
-														<img src="#" alt="">
-													</figure>
-													<div class="friend-name">
-														<ins><a th:href="@{/users/timeline/search/__${myPosts.getAppUser().getAppUser_id()}__}" title="" th:text="*{myPosts.getAppUser().name}"></a></ins>
-														<span>thời gian đăng bài</span>
+																		</div>
+																	</li>
+	<!--																cái này đẹp đẹp này-->
+	<!--																-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+																</ul>
+															</div>
+														</div>
 													</div>
-													<div class="description">
-														<p th:text="*{myPosts.getContent()}"></p>
-													</div>
-													<div class="post-meta">
-														<img src="#" alt="">
-														<div class="we-video-info">
-															<ul>
-																<li>
-																<span class="like" data-toggle="tooltip" title="like">
-																	<i class="ti-heart"></i>
-																	<ins>2.2k</ins>
-																</span>
-																</li>
-																<li>
-																<span class="dislike" data-toggle="tooltip" title="dislike">
-																	<i class="ti-heart-broken"></i>
-																	<ins>dislike</ins>
-																</span>
-																</li>
-																<li>
-																<span class="comment" data-toggle="tooltip" title="Comments">
-																	<i class="fa fa-comments-o"></i>
-																	<ins>số comment</ins>
-																</span>
-																</li>
 
-<!--																-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-																<li class="social-media">
-																	<div class="menu">
-																		<div class="btn trigger"><i class="fa fa-share-alt"></i></div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-css3"></i></a></div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a>
-																			</div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-dribbble"></i></a>
-																			</div>
-																		</div>
-																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-pinterest"></i></a>
-																			</div>
-																		</div>
 
+													<div class="coment-area" >
+														<ul class="we-comet">
+															<th:block th:each="theycommentt : ${theyPosts.getCommentPosts()}">
+																<li>
+																	<div class="comet-avatar">
+																		<img src="images/resources/comet-1.jpg" alt="">
+																	</div>
+																	<div class="we-comment">
+																		<div class="coment-head">
+																			<h5><a th:href="@{/users/timeline/search/__${theycommentt.getAppUser().getAppUser_id()}__}" title="" th:text="*{theycommentt.getAppUser().name}"></a></h5>
+																			<span>thời gian comment</span>
+																			<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+																		</div>
+																		<p th:text="*{theycommentt.content}"></p>
 																	</div>
 																</li>
-<!--																cái này đẹp đẹp này-->
-<!--																-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-															</ul>
-														</div>
-													</div>
-												</div>
-
-
-												<div class="coment-area" >
-													<ul class="we-comet">
-														<th:block th:each="commentt : ${myPosts.getCommentPosts()}">
-															<li>
+															</th:block>
+															<li class="post-comment">
 																<div class="comet-avatar">
-																	<img src="images/resources/comet-1.jpg" alt="">
+																	<img src="#" alt="">
 																</div>
-																<div class="we-comment">
-																	<div class="coment-head">
-																		<h5><a th:href="@{/users/timeline/search/__${commentt.getAppUser().getAppUser_id()}__}" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
-																		<span>thời gian comment</span>
-																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-																	</div>
-																	<p th:text="*{commentt.content}"></p>
+																<div class="post-comt-box">
+																	<form method="post" action="/users/creat/comment">
+																		<input hidden name="idPost" th:value="${theyPosts.getPost_id()}"/>
+																		<textarea name="content" placeholder="Post your comment"></textarea>
+																		<div class="add-smiles">
+																			<span class="em em-expressionless" title="add icon"></span>
+																		</div>
+																		<div class="smiles-bunch">
+																			<i class="em em---1"></i>
+																			<i class="em em-smiley"></i>
+																			<i class="em em-anguished"></i>
+																			<i class="em em-laughing"></i>
+																			<i class="em em-angry"></i>
+																			<i class="em em-astonished"></i>
+																			<i class="em em-blush"></i>
+																			<i class="em em-disappointed"></i>
+																			<i class="em em-worried"></i>
+																			<i class="em em-kissing_heart"></i>
+																			<i class="em em-rage"></i>
+																			<i class="em em-stuck_out_tongue"></i>
+																		</div>
+																		<button type="submit">comment</button>
+																	</form>
 																</div>
 															</li>
-														</th:block>
-														<li class="post-comment">
-															<div class="comet-avatar">
-																<img src="#" alt="">
-															</div>
-															<div class="post-comt-box">
-																<form method="post" action="/users/creat/comment">
-																	<input hidden name="idPost" th:value="${myPosts.getPost_id()}"/>
-																	<textarea name="content" placeholder="Post your comment"></textarea>
-																	<div class="add-smiles">
-																		<span class="em em-expressionless" title="add icon"></span>
-																	</div>
-																	<div class="smiles-bunch">
-																		<i class="em em---1"></i>
-																		<i class="em em-smiley"></i>
-																		<i class="em em-anguished"></i>
-																		<i class="em em-laughing"></i>
-																		<i class="em em-angry"></i>
-																		<i class="em em-astonished"></i>
-																		<i class="em em-blush"></i>
-																		<i class="em em-disappointed"></i>
-																		<i class="em em-worried"></i>
-																		<i class="em em-kissing_heart"></i>
-																		<i class="em em-rage"></i>
-																		<i class="em em-stuck_out_tongue"></i>
-																	</div>
-																	<button type="submit">comment</button>
-																</form>
-															</div>
-														</li>
-													</ul>
+														</ul>
+													</div>
 												</div>
 											</div>
-										</div>
 
-									</th:block>
+										</th:block>
 
 
 
 
 								</div>
 							</div><!-- centerl meta -->
+							</div>
 							<div class="col-lg-3">
 								<aside class="sidebar static">
 									<div class="widget friend-list stick-widget">
