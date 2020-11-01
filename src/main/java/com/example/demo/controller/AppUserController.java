@@ -122,10 +122,24 @@ public class AppUserController {
     }
 
     @PostMapping("/creat/post")
-    public ModelAndView homePost(@ModelAttribute("post") Post post){
-        post.setAppUser(appUserService.getCurrentUser());
-        postService.save(post);
+    public ModelAndView homePost(@ModelAttribute("post") Post post, @ModelAttribute("postImageFile") MultipartFile postImageFile){
         ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        post.setAppUser(appUserService.getCurrentUser());
+        Post post1 = postService.save(post);
+        post1.setPostImageFile(postImageFile);
+        Cloudinary c = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
+        try {
+            File avFile = Files.createTempFile("temp", postImageFile.getOriginalFilename()).toFile();
+            postImageFile.transferTo(avFile);
+            Map responseAV = c.uploader().upload(avFile, ObjectUtils.emptyMap());
+            JSONObject jsonAV = new JSONObject(responseAV);
+            String urlAV = jsonAV.getString("url");
+            post1.setPostImage(urlAV);
+            postService.save(post1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        modelAndView.addObject("post",post1);
         return modelAndView;
     }
 

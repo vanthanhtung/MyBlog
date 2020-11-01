@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -20,6 +21,10 @@ public class Post {
     private String title;
     private String content;
     private Date post_date;
+    private String postImage;
+
+    @Transient
+    private MultipartFile postImageFile;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

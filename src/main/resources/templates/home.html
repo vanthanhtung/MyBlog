@@ -348,7 +348,7 @@
 													<img src="images/resources/admin2.jpg" alt="">
 												</figure>
 												<div class="newpst-input">
-													<form method="post" action="/users/creat/post" th:object="${post}">
+													<form method="post" action="/users/creat/post" th:object="${post}" enctype="multipart/form-data">
 														<textarea th:field="*{content}" rows="2" placeholder="write something"></textarea>
 														<div class="attachments">
 															<ul>
@@ -361,7 +361,7 @@
 																<li>
 																	<i class="fa fa-image"></i>
 																	<label class="fileContainer">
-																		<input type="file">
+																		<input type="file" name="postImageFile">
 																	</label>
 																</li>
 																<li>
@@ -402,7 +402,8 @@
 														<p th:text="*{myPosts.getContent()}"></p>
 													</div>
 													<div class="post-meta">
-														<img src="#" alt="">
+														<img th:src="${myPosts.getPostImage()}" alt="">
+													</div>
 														<div class="we-video-info">
 															<ul>
 																<li>
