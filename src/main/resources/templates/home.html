@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
-    
+    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
@@ -16,7 +16,7 @@
 <body>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
-	
+
 	<div class="responsive-header">
 		<div class="mh-head first Sticky">
 			<span class="mh-btns-left">
@@ -36,12 +36,12 @@
 			</form>
 		</div>
 	</div><!-- responsive header -->
-	
+
 	<div class="topbar stick">
 		<div class="logo">
 			<a title="" href="/users/trangchu"><img src="images/logo.png" alt=""></a>
 		</div>
-		
+
 		<div class="top-area">
 			<ul class="setting-area">
 				<li>
@@ -198,22 +198,21 @@
 				<span class="status f-online"></span>
 			</div>
 		</div>
-	</div><!-- topbar -->	
-		
+	</div><!-- topbar -->
+
 	<section>
 		<div class="feature-photo">
-			<figure><img th:src="${user.getCover()}" alt=""></figure>
+			<figure><img src="images/resources/timeline-1.jpg" alt=""></figure>
 			<div class="add-btn">
 				<span>1205 followers</span>
 				<a href="#" title="" data-ripple="">Add Friend</a>
 			</div>
-			<form class="edit-phto" th:action="@{/users/cover}" method="post" enctype="multipart/form-data">
+			<form class="edit-phto">
 				<i class="fa fa-camera-retro"></i>
 				<label class="fileContainer">
 					Edit Cover Photo
-				<input type="file" name="cover"/>
+				<input type="file"/>
 				</label>
-				<input type="submit" value="submit">
 			</form>
 			<div class="container-fluid">
 				<div class="row merged">
@@ -255,7 +254,7 @@
 			</div>
 		</div>
 	</section><!-- top area -->
-		
+
 	<section>
 		<div class="gap gray-bg">
 			<div class="container-fluid">
@@ -609,11 +608,11 @@
 									</div><!-- friends list sidebar -->
 								</aside>
 							</div><!-- sidebar -->
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</section>
 
 	<footer>
@@ -624,7 +623,7 @@
 						<div class="foot-logo">
 							<div class="logo">
 								<a href="index-2.html" title=""><img src="images/logo.png" alt=""></a>
-							</div>	
+							</div>
 							<p>
 								The trio took this simple idea and built it into the world’s leading carpooling platform.
 							</p>
