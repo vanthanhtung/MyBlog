@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> 
+    <link rel="icon" href="/images/fav.png" type="image/png" sizes="16x16">
     
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="/css/main.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css">
+    <link rel="stylesheet" href="/css/responsive.css">
 	<title th:text="${user.name}"></title>
 </head>
 <body>
@@ -53,7 +53,7 @@
 						</form>
 					</div>
 				</li>
-				<li><a href="newsfeed.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
+				<li><a href="/users/myhome" title="Home" ><i class="ti-home"></i></a></li>
 				<li>
 					<a href="#" title="Notification" data-ripple="">
 						<i class="ti-bell"></i><span>20</span>
@@ -385,7 +385,7 @@
 											</div>
 										</div><!-- add post new box -->
 
-									<th:block th:each="posts : ${listPost}">
+									<th:block th:each="myPosts : ${myListPost}">
 										<div class="central-meta item">
 
 											<div class="user-post">
@@ -394,11 +394,11 @@
 														<img src="#" alt="">
 													</figure>
 													<div class="friend-name">
-														<ins><a href="#" title="" th:text="*{posts.getAppUser().name}"></a></ins>
+														<ins><a href="#" title="" th:text="*{myPosts.getAppUser().name}"></a></ins>
 														<span>thời gian đăng bài</span>
 													</div>
 													<div class="description">
-														<p th:text="*{posts.getContent()}"></p>
+														<p th:text="*{myPosts.getContent()}"></p>
 													</div>
 													<div class="post-meta">
 														<img src="#" alt="">
@@ -467,7 +467,7 @@
 
 												<div class="coment-area" >
 													<ul class="we-comet">
-														<th:block th:each="commentt : ${posts.getCommentPosts()}">
+														<th:block th:each="commentt : ${myPosts.getCommentPosts()}">
 															<li>
 																<div class="comet-avatar">
 																	<img src="images/resources/comet-1.jpg" alt="">
@@ -488,7 +488,7 @@
 															</div>
 															<div class="post-comt-box">
 																<form method="post" action="/users/creat/comment">
-																	<input hidden name="idPost" th:value="${posts.getPost_id()}"/>
+																	<input hidden name="idPost" th:value="${myPosts.getPost_id()}"/>
 																	<textarea name="content" placeholder="Post your comment"></textarea>
 																	<div class="add-smiles">
 																		<span class="em em-expressionless" title="add icon"></span>
@@ -687,7 +687,7 @@
 		</div>
 	</footer><!-- footer -->
 </div>
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
-	<script src="js/script.js"></script>
+	<script data-cfasync="false" src="/../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
+	<script src="/js/script.js"></script>
 </body>
 </html>

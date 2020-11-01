@@ -1,23 +1,21 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.AppUser;
-import com.example.demo.model.CommentPost;
-import com.example.demo.model.Post;
-import com.example.demo.service.appUserService.AppUserService;
-import com.example.demo.service.commentService.CommentPostService;
-import com.example.demo.service.postService.PostService;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+        import com.example.demo.model.AppUser;
+        import com.example.demo.model.CommentPost;
+        import com.example.demo.model.Post;
+        import com.example.demo.service.appUserService.AppUserService;
+        import com.example.demo.service.commentService.CommentPostService;
+        import com.example.demo.service.postService.PostService;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.web.bind.annotation.*;
+        import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Iterator;
-import java.util.List;
+        import java.util.List;
 
 @Controller
-@RequestMapping("/users")
-public class AppUserController {
+@RequestMapping("/users/timeline")
+public class AppUserFreindController {
 
     @Autowired
     private AppUserService appUserService;
@@ -34,10 +32,10 @@ public class AppUserController {
         return post;
     }
 
-    @ModelAttribute("comment")
-    public CommentPost newComment(){
-        CommentPost comment = new CommentPost();
-        return comment;
+    @ModelAttribute("listPost")
+    public Iterable<Post> listPost(){
+        Iterable<Post> listPost= postService.findAll();
+        return listPost;
     }
 
     @ModelAttribute("myListPost")
@@ -46,10 +44,10 @@ public class AppUserController {
         return listPost;
     }
 
-    @ModelAttribute("listPost")
-    public Iterable<Post> listPost(){
-        Iterable<Post> listPost= postService.findAll();
-        return listPost;
+    @ModelAttribute("comment")
+    public CommentPost newComment(){
+        CommentPost comment = new CommentPost();
+        return comment;
     }
 
     @ModelAttribute("user")
@@ -57,23 +55,18 @@ public class AppUserController {
         return appUserService.getCurrentUser();
     }
 
-    @GetMapping("/myhome")
-    public ModelAndView MyUserHome(){
-        ModelAndView modelAndView = new ModelAndView("home");
-        return modelAndView;
-    }
-
     @PostMapping("/creat/post")
     public ModelAndView homePost(@ModelAttribute("post") Post post){
         post.setAppUser(appUserService.getCurrentUser());
         postService.save(post);
-        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        ModelAndView modelAndView = new ModelAndView("redirect:/users/timeline");
         return modelAndView;
     }
 
+
     @PostMapping("/creat/comment")
     public ModelAndView homeComment( @ModelAttribute("idPost") Long id,  @ModelAttribute("content") String content){
-        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        ModelAndView modelAndView = new ModelAndView("redirect:/users/timeline");
         Post post = postService.findById(id).get();
 
         CommentPost commentPost = new CommentPost();//tạo comment lưu và database. rồi mới xét lại commment cho post
@@ -91,7 +84,7 @@ public class AppUserController {
 
     @GetMapping()
     public ModelAndView home(@ModelAttribute String username){
-        ModelAndView modelAndView = new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView("timeline");
         return modelAndView;
     }
 
@@ -110,3 +103,4 @@ public class AppUserController {
         return "timeline";
     }
 }
+
