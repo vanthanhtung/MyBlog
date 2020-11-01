@@ -65,6 +65,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public Iterable<AppUser> getAllByRoleOrRole(Role role1, Role role2) {
+        return appUserRepository.getAllByRoleOrRole(role1, role2);
+    }
+
+    @Override
     public Iterable<AppUser> findAll() {
         return appUserRepository.findAll();
     }

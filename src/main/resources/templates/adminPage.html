@@ -41,7 +41,7 @@
                         <th:block th:each="user: ${listUsers}">
                         <tbody>
                         <tr>
-                            <td ><img th:src="@{'/i/'+ ${user.getAvatar()}}" width="100"/></td>
+                            <td><img th:src="${user.getCover()}" alt="" width="100px"></td>
                             <td th:text="${user.getName()}"></td>
                             <td th:text="${user.getDateOfBirth()}"></td>
                             <td th:text="${user.getEmail()}"></td>

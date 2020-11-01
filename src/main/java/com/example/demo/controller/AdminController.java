@@ -32,7 +32,9 @@ public class AdminController {
     @GetMapping("")
     public ModelAndView adminPage(){
         ModelAndView modelAndView = new ModelAndView("adminPage");
-        modelAndView.addObject("listUsers",appUserService.getAllByRoleId((long) 2));
+        Role role_user = roleService.getById((long) 2);
+        Role role_guest = roleService.getById((long) 3);
+        modelAndView.addObject("listUsers",appUserService.getAllByRoleOrRole(role_user,role_guest));
         return modelAndView;
     }
 
@@ -51,11 +53,26 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView("redirect:/admin");
         Optional<AppUser> currentUser = appUserService.findById(id);
         AppUser currentUser1 = currentUser.get();
-        Role role = roleService.getById((long) 3);
-        currentUser1.setRole(role);
+        Role role_guest = roleService.getById((long) 3);
+        Role role_user = roleService.getById((long) 2);
+        currentUser1.setRole(role_guest);
         currentUser1.setIsActive("false");
         appUserService.save(currentUser1);
-        modelAndView.addObject("listUsers",appUserService.getAllByRoleId((long) 2));
+        modelAndView.addObject("listUsers",appUserService.getAllByRoleOrRole(role_user,role_guest));
+        return modelAndView;
+    }
+
+    @GetMapping("/unBlockUser/{id}")
+    public ModelAndView unBlockUser(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin");
+        Optional<AppUser> currentUser = appUserService.findById(id);
+        AppUser currentUser1 = currentUser.get();
+        Role role_guest = roleService.getById((long) 3);
+        Role role_user = roleService.getById((long) 2);
+        currentUser1.setRole(role_user);
+        currentUser1.setIsActive("true");
+        appUserService.save(currentUser1);
+        modelAndView.addObject("listUsers",appUserService.getAllByRoleOrRole(role_user,role_guest));
         return modelAndView;
     }
 }
