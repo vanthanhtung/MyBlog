@@ -58,6 +58,8 @@ public class HomeController {
         Optional<Role> role = roleService.findById((long)2);
         appUser.setRole(role.get());
         appUser.setIsActive("true");
+        appUser.setCover("http://res.cloudinary.com/dnulbp9wi/image/upload/v1604209358/pstioavxgnuzkjfcqe48.jpg");
+        appUser.setAvatar("http://res.cloudinary.com/dnulbp9wi/image/upload/v1604211645/me0qfaepnmgmxqfa7mue.jpg");
         appUserService.save(appUser);
         modelAndView.addObject("appUser",appUser);
         return modelAndView;

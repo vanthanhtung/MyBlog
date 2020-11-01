@@ -10,4 +10,5 @@ import java.util.List;
 public interface PostRepository extends CrudRepository<Post, Long> {
 //    Iterable<CommentPost> getAllByPost_id(Long id);
     Iterable<Post> getAllByAppUser(AppUser appUser);
+
 }
