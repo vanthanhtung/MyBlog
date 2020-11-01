@@ -6,13 +6,11 @@ import com.example.demo.model.AppUser;
 import com.example.demo.model.Post;
 import com.example.demo.service.appUserService.AppUserService;
 import com.example.demo.service.postService.PostService;
+import com.example.demo.service.roleService.RoleService;
 import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +23,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/users")
 public class AppUserController {
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private AppUserService appUserService;
@@ -42,14 +42,15 @@ public class AppUserController {
         return post;
     }
 
-    @GetMapping("/avatar")
-    public ModelAndView uploadImage(@ModelAttribute AppUser user) {
-        ModelAndView modelAndView = new ModelAndView("home");
-        MultipartFile avatarFile = user.getAvatarFile();
+    @PostMapping("/avatar")
+    public ModelAndView uploadAvatar(@ModelAttribute("avatar") MultipartFile avatar) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        AppUser user = appUserService.getCurrentUser();
+        user.setAvatarFile(avatar);
         Cloudinary c = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
         try {
-            File avFile = Files.createTempFile("temp", avatarFile.getOriginalFilename()).toFile();
-            avatarFile.transferTo(avFile);
+            File avFile = Files.createTempFile("temp", avatar.getOriginalFilename()).toFile();
+            avatar.transferTo(avFile);
             Map responseAV = c.uploader().upload(avFile, ObjectUtils.emptyMap());
             JSONObject jsonAV = new JSONObject(responseAV);
             String urlAV = jsonAV.getString("url");
@@ -58,6 +59,28 @@ public class AppUserController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        modelAndView.addObject("user",user);
+        return modelAndView;
+    }
+
+    @PostMapping("/cover")
+    public ModelAndView uploadCover(@ModelAttribute("cover") MultipartFile cover) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        AppUser user = appUserService.getCurrentUser();
+        user.setCoverFile(cover);
+        Cloudinary c = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
+        try {
+            File cvFile = Files.createTempFile("temp", cover.getOriginalFilename()).toFile();
+            cover.transferTo(cvFile);
+            Map responseAV = c.uploader().upload(cvFile, ObjectUtils.emptyMap());
+            JSONObject jsonAV = new JSONObject(responseAV);
+            String urlCV = jsonAV.getString("url");
+            user.setCover(urlCV);
+            appUserService.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        modelAndView.addObject("user",user);
         return modelAndView;
     }
 

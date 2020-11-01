@@ -24,8 +24,10 @@ public class AppUser {
 
     @NotBlank (message = "Please fill out this field")
     private String name;
+
     @NotBlank (message = "Please fill out this field")
     private String password;
+
     private Date dateOfBirth;
 
     @Email
@@ -33,10 +35,14 @@ public class AppUser {
     private String email;
 
     private String avatar;
+    private String cover;
+
     @Transient
     private MultipartFile avatarFile;
+
     @Transient
-    private MultipartFile cover;
+    private MultipartFile coverFile;
+
     private String introduction;
     private String job;
     private String gender;
