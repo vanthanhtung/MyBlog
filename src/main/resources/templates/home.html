@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="/images/fav.png" type="image/png" sizes="16x16">
 
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="/css/main.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css">
+    <link rel="stylesheet" href="/css/responsive.css">
 	<title th:text="${user.name}"></title>
 </head>
 <body>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
-
+	
 	<div class="responsive-header">
 		<div class="mh-head first Sticky">
 			<span class="mh-btns-left">
@@ -36,12 +36,12 @@
 			</form>
 		</div>
 	</div><!-- responsive header -->
-
+	
 	<div class="topbar stick">
 		<div class="logo">
 			<a title="" href="/users/trangchu"><img src="images/logo.png" alt=""></a>
 		</div>
-
+		
 		<div class="top-area">
 			<ul class="setting-area">
 				<li>
@@ -385,28 +385,21 @@
 												</div>
 											</div>
 										</div><!-- add post new box -->
-<!--									<div class="central-meta item">-->
-<!--									<th:block th:each="posts : ${listPost}">-->
-<!--										<div>-->
-<!--											<p th:text="${posts.getAppUser().name}"></p>-->
-<!--											<p th:text="${posts.getContent()}"></p>-->
-<!--										</div>-->
-<!--									</th:block>-->
-<!--									</div>-->
 
-									<th:block th:each="posts : ${listPost}">
+									<th:block th:each="myPosts : ${myListPost}">
 										<div class="central-meta item">
+
 											<div class="user-post">
 												<div class="friend-info">
 													<figure>
 														<img src="#" alt="">
 													</figure>
 													<div class="friend-name">
-														<ins><a href="#" title="" th:text="*{posts.getAppUser().name}"></a></ins>
+														<ins><a href="#" title="" th:text="*{myPosts.getAppUser().name}"></a></ins>
 														<span>thời gian đăng bài</span>
 													</div>
 													<div class="description">
-														<p th:text="*{posts.getContent()}"></p>
+														<p th:text="*{myPosts.getContent()}"></p>
 													</div>
 													<div class="post-meta">
 														<img src="#" alt="">
@@ -471,28 +464,33 @@
 														</div>
 													</div>
 												</div>
-												<div class="coment-area">
+
+
+												<div class="coment-area" >
 													<ul class="we-comet">
-														<li>
-															<div class="comet-avatar">
-																<img src="images/resources/comet-1.jpg" alt="">
-															</div>
-															<div class="we-comment">
-																<div class="coment-head">
-																	<h5><a href="time-line.html" title="">Jason borne</a></h5>
-																	<span>1 year ago</span>
-																	<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+														<th:block th:each="commentt : ${myPosts.getCommentPosts()}">
+															<li>
+																<div class="comet-avatar">
+																	<img src="images/resources/comet-1.jpg" alt="">
 																</div>
-																<p>we are working for the dance and sing songs. this car is very awesome for the youngster. please vote this car and like our post</p>
-															</div>
-														</li>
+																<div class="we-comment">
+																	<div class="coment-head">
+																		<h5><a href="#" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
+																		<span>thời gian comment</span>
+																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+																	</div>
+																	<p th:text="*{commentt.content}"></p>
+																</div>
+															</li>
+														</th:block>
 														<li class="post-comment">
 															<div class="comet-avatar">
 																<img src="#" alt="">
 															</div>
 															<div class="post-comt-box">
-																<form method="post">
-																	<textarea placeholder="Post your comment"></textarea>
+																<form method="post" action="/users/creat/comment">
+																	<input hidden name="idPost" th:value="${myPosts.getPost_id()}"/>
+																	<textarea name="content" placeholder="Post your comment"></textarea>
 																	<div class="add-smiles">
 																		<span class="em em-expressionless" title="add icon"></span>
 																	</div>
@@ -510,7 +508,7 @@
 																		<i class="em em-rage"></i>
 																		<i class="em em-stuck_out_tongue"></i>
 																	</div>
-																	<button type="submit"></button>
+																	<button type="submit">comment</button>
 																</form>
 															</div>
 														</li>
@@ -518,8 +516,8 @@
 												</div>
 											</div>
 										</div>
-									</th:block>
 
+									</th:block>
 
 
 
@@ -529,7 +527,7 @@
 							<div class="col-lg-3">
 								<aside class="sidebar static">
 									<div class="widget friend-list stick-widget">
-										<h4 class="widget-title">Friends</h4>
+										<h4 class="widget-title">Follower</h4>
 										<div id="searchDir"></div>
 										<ul id="people-list" class="friendz-list">
 											<li>
@@ -690,7 +688,7 @@
 		</div>
 	</footer><!-- footer -->
 </div>
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
-	<script src="js/script.js"></script>
+	<script data-cfasync="false" src="/../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.min.js"></script>
+	<script src="/js/script.js"></script>
 </body>
 </html>

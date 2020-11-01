@@ -1,22 +1,25 @@
 package com.example.demo.controller;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.model.AppUser;
+import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
 import com.example.demo.service.appUserService.AppUserService;
+import com.example.demo.service.commentService.CommentPostService;
 import com.example.demo.service.postService.PostService;
 import com.example.demo.service.roleService.RoleService;
 import org.cloudinary.json.JSONObject;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.sql.Timestamp;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +38,9 @@ public class AppUserController {
     String mCloudName = "dnulbp9wi";
     String mApiKey = "388747591265657";
     String mApiSecret = "QrSQljoMltB5OgDmxQM81UBSB-0";
+
+    @Autowired
+    private CommentPostService commentPostService;
 
     @ModelAttribute("post")
     public Post newPost(){
@@ -84,6 +90,18 @@ public class AppUserController {
         return modelAndView;
     }
 
+    @ModelAttribute("comment")
+    public CommentPost newComment(){
+        CommentPost comment = new CommentPost();
+        return comment;
+    }
+
+    @ModelAttribute("myListPost")
+    public Iterable<Post> MylistPost(){
+        Iterable<Post> listPost = postService.getAllByAppUser(appUserService.getCurrentUser());
+        return listPost;
+    }
+
     @ModelAttribute("listPost")
     public Iterable<Post> listPost(){
         Iterable<Post> listPost= postService.findAll();
@@ -95,6 +113,12 @@ public class AppUserController {
         return appUserService.getCurrentUser();
     }
 
+    @GetMapping("/myhome")
+    public ModelAndView MyUserHome(){
+        ModelAndView modelAndView = new ModelAndView("home");
+        return modelAndView;
+    }
+
     @PostMapping("/creat/post")
     public ModelAndView homePost(@ModelAttribute("post") Post post){
         post.setAppUser(appUserService.getCurrentUser());
@@ -102,6 +126,24 @@ public class AppUserController {
         ModelAndView modelAndView = new ModelAndView("redirect:/users");
         return modelAndView;
     }
+
+    @PostMapping("/creat/comment")
+    public ModelAndView homeComment( @ModelAttribute("idPost") Long id,  @ModelAttribute("content") String content){
+        ModelAndView modelAndView = new ModelAndView("redirect:/users");
+        Post post = postService.findById(id).get();
+
+        CommentPost commentPost = new CommentPost();//tạo comment lưu và database. rồi mới xét lại commment cho post
+        commentPost.setContent(content);
+        commentPost.setAppUser(appUserService.getCurrentUser());
+        commentPost.setPost(post);
+        commentPostService.save(commentPost);
+
+        post.setCommentPosts((List<CommentPost>) commentPostService.getAllByPost(post));
+        postService.save(post);
+
+        return modelAndView;
+    }
+
 
     @GetMapping()
     public ModelAndView home(@ModelAttribute String username){
