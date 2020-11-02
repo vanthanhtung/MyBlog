@@ -99,6 +99,7 @@ public class AppUserFreindController {
         commentPost.setContent(content);
         commentPost.setAppUser(appUserService.getCurrentUser());
         commentPost.setPost(post);
+        commentPost.setDate(LocalDateTime.now());
         commentPostService.save(commentPost);
 
         post.setCommentPosts((List<CommentPost>) commentPostService.getAllByPost(post));
@@ -130,9 +131,9 @@ public class AppUserFreindController {
         modelAndView.addObject("searchUserById", user);
         Iterable<Post> listPost = postService.getAllByAppUserOrderByDateDesc(user);
         modelAndView.addObject("searchListPostById", listPost);
+        modelAndView.addObject("searchFriendId",id);
         return modelAndView;
     }
-
 
     @GetMapping()
     public ModelAndView home(@ModelAttribute String username){

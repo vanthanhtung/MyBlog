@@ -151,6 +151,7 @@ public class AppUserController {
         commentPost.setContent(content);
         commentPost.setAppUser(appUserService.getCurrentUser());
         commentPost.setPost(post);
+        commentPost.setDate(LocalDateTime.now());
         commentPostService.save(commentPost);
 
         post.setCommentPosts((List<CommentPost>) commentPostService.getAllByPost(post));
@@ -158,7 +159,6 @@ public class AppUserController {
 
         return modelAndView;
     }
-
 
     @GetMapping()
     public ModelAndView home(@ModelAttribute String username){

@@ -328,7 +328,7 @@
 											<div class="user-post">
 												<div class="friend-info">
 													<figure>
-														<img src="#" alt="">
+														<img th:src="${posts.getAppUser().getAvatar()}" alt="">
 													</figure>
 													<div class="friend-name">
 														<ins><a th:href="@{/users/timeline/search/__${posts.getAppUser().getAppUser_id()}__}" th:text="*{posts.getAppUser().name}"></a></ins>
@@ -368,7 +368,7 @@
 																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-html5"></i></a></div>
 																		</div>
 																		<div class="rotater">
-																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																			<div class="btn btn-icon"><a href="https://web.facebook.com/" title=""><i class="fa fa-facebook"></i></a></div>
 																		</div>
 																		<div class="rotater">
 																			<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-google-plus"></i></a></div>
@@ -410,7 +410,7 @@
 																<div class="we-comment">
 																	<div class="coment-head">
 																		<h5><a th:href="@{/users/timeline/search/__${commentt.getAppUser().getAppUser_id()}__}" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
-																		<span>thời gian comment</span>
+																		<span th:text="${commentt.getDate()}"></span>
 																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																	</div>
 																	<p th:text="*{commentt.content}"></p>
@@ -464,10 +464,10 @@
 										<h4 class="widget-title">Your page</h4>	
 										<div class="your-page">
 											<figure>
-												<a href="#" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
+												<a href="/users/myhome" title=""><img th:src="${user.getAvatar()}" alt=""></a>
 											</figure>
 											<div class="page-meta">
-												<a href="/users/myhome" title="" class="underline">My page</a>
+												<a href="/users/myhome" title="" class="underline" th:text="${user.name}"></a>
 												<span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
 												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
 											</div>
@@ -737,10 +737,10 @@
 					<div class="widget">
 						<div class="widget-title"><h4>follow</h4></div>
 						<ul class="list-style">
-							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/shopcircut/" title="">facebook</a></li>
-							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/login?lang=en" title="">twitter</a></li>
-							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/?hl=en" title="">instagram</a></li>
-							<li><i class="fa fa-google-plus-square"></i> <a href="https://plus.google.com/discover" title="">Google+</a></li>
+							<li><i class="fa fa-facebook-square"></i> <a href="https://web.facebook.com/" title="">facebook</a></li>
+							<li><i class="fa fa-twitter-square"></i><a href="https://twitter.com/" title="">twitter</a></li>
+							<li><i class="fa fa-instagram"></i><a href="https://www.instagram.com/" title="">instagram</a></li>
+							<li><i class="fa fa-google-plus-square"></i> <a href="https://google.com/" title="">Google+</a></li>
 							<li><i class="fa fa-pinterest-square"></i> <a href="https://www.pinterest.com/" title="">Pintrest</a></li>
 						</ul>
 					</div>

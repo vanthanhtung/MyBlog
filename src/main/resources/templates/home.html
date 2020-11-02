@@ -275,10 +275,6 @@
 												<a href="/users/timeline" title="">News feed</a>
 											</li>
 											<li>
-												<i class="ti-mouse-alt"></i>
-												<a href="inbox.html" title="">Inbox</a>
-											</li>
-											<li>
 												<i class="ti-files"></i>
 												<a href="/users/myhome" title="">My pages</a>
 											</li>
@@ -291,24 +287,12 @@
 												<a href="timeline-photos.html" title="">images</a>
 											</li>
 											<li>
-												<i class="ti-video-camera"></i>
-												<a href="timeline-videos.html" title="">videos</a>
-											</li>
-											<li>
 												<i class="ti-comments-smiley"></i>
 												<a href="messages.html" title="">Messages</a>
 											</li>
 											<li>
 												<i class="ti-bell"></i>
 												<a href="notifications.html" title="">Notifications</a>
-											</li>
-											<li>
-												<i class="ti-share"></i>
-												<a href="people-nearby.html" title="">People Nearby</a>
-											</li>
-											<li>
-												<i class="fa fa-bar-chart-o"></i>
-												<a href="insights.html" title="">insights</a>
 											</li>
 											<li>
 												<i class="ti-power-off"></i>
@@ -396,7 +380,7 @@
 											<div class="user-post">
 												<div class="friend-info">
 													<figure>
-														<img src="#" alt="">
+														<img th:src="${myPosts.getAppUser().getAvatar()}" th:href="@{/users/timeline/search/__${myPosts.getAppUser().getAppUser_id()}__}">
 													</figure>
 													<div class="friend-name">
 														<ins><a th:href="@{/users/timeline/search/__${myPosts.getAppUser().getAppUser_id()}__}" title="" th:text="*{myPosts.getAppUser().name}"></a></ins>
@@ -478,7 +462,7 @@
 																<div class="we-comment">
 																	<div class="coment-head">
 																		<h5><a th:href="@{/users/timeline/search/__${commentt.getAppUser().getAppUser_id()}__}" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
-																		<span>thời gian comment</span>
+																		<span th:text="${commentt.getDate()}"></span>
 																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																	</div>
 																	<p th:text="*{commentt.content}"></p>
