@@ -331,7 +331,7 @@
 														<img src="#" alt="">
 													</figure>
 													<div class="friend-name">
-														<ins><a href="#" title="" th:text="*{posts.getAppUser().name}"></a></ins>
+														<ins><a th:href="@{/users/timeline/search/__${posts.getAppUser().getAppUser_id()}__}" th:text="*{posts.getAppUser().name}"></a></ins>
 														<span>thời gian đăng bài</span>
 													</div>
 													<div class="description">
@@ -409,7 +409,7 @@
 																</div>
 																<div class="we-comment">
 																	<div class="coment-head">
-																		<h5><a href="#" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
+																		<h5><a th:href="@{/users/timeline/search/__${commentt.getAppUser().getAppUser_id()}__}" title="" th:text="*{commentt.getAppUser().name}"></a></h5>
 																		<span>thời gian comment</span>
 																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																	</div>

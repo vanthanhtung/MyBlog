@@ -5,6 +5,7 @@ import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
 import com.example.demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,4 +41,5 @@ public class PostServiceImpl implements PostService {
     public Iterable<Post> getAllByAppUser(AppUser user) {
         return postService.getAllByAppUser(user);
     }
+
 }
