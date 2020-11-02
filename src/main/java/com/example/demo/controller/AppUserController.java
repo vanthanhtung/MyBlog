@@ -5,6 +5,7 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.model.AppUser;
 import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
+import com.example.demo.model.Role;
 import com.example.demo.service.appUserService.AppUserService;
 import com.example.demo.service.commentService.CommentPostService;
 import com.example.demo.service.postService.PostService;

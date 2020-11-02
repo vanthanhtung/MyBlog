@@ -3,6 +3,7 @@ package com.example.demo.service.postService;
 import com.example.demo.model.AppUser;
 import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
+import com.example.demo.model.Role;
 import com.example.demo.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
