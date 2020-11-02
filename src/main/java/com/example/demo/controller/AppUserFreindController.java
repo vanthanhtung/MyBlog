@@ -1,22 +1,32 @@
 package com.example.demo.controller;
 
+        import com.cloudinary.Cloudinary;
+        import com.cloudinary.utils.ObjectUtils;
         import com.example.demo.model.AppUser;
         import com.example.demo.model.CommentPost;
         import com.example.demo.model.Post;
         import com.example.demo.service.appUserService.AppUserService;
         import com.example.demo.service.commentService.CommentPostService;
         import com.example.demo.service.postService.PostService;
+        import org.cloudinary.json.JSONObject;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Controller;
         import org.springframework.web.bind.annotation.*;
+        import org.springframework.web.multipart.MultipartFile;
         import org.springframework.web.servlet.ModelAndView;
 
+        import java.io.File;
+        import java.nio.file.Files;
         import java.util.Iterator;
         import java.util.List;
+        import java.util.Map;
 
 @Controller
 @RequestMapping("/users/timeline")
 public class AppUserFreindController {
+    String mCloudName = "dnulbp9wi";
+    String mApiKey = "388747591265657";
+    String mApiSecret = "QrSQljoMltB5OgDmxQM81UBSB-0";
 
     @Autowired
     private AppUserService appUserService;
@@ -57,13 +67,26 @@ public class AppUserFreindController {
     }
 
     @PostMapping("/creat/post")
-    public ModelAndView homePost(@ModelAttribute("post") Post post){
-        post.setAppUser(appUserService.getCurrentUser());
-        postService.save(post);
+    public ModelAndView homePost(@ModelAttribute("post") Post post, @ModelAttribute("postImageFile") MultipartFile postImageFile){
         ModelAndView modelAndView = new ModelAndView("redirect:/users/timeline");
+        post.setAppUser(appUserService.getCurrentUser());
+        Post post1 = postService.save(post);
+        post1.setPostImageFile(postImageFile);
+        Cloudinary c = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
+        try {
+            File avFile = Files.createTempFile("temp", postImageFile.getOriginalFilename()).toFile();
+            postImageFile.transferTo(avFile);
+            Map responseAV = c.uploader().upload(avFile, ObjectUtils.emptyMap());
+            JSONObject jsonAV = new JSONObject(responseAV);
+            String urlAV = jsonAV.getString("url");
+            post1.setPostImage(urlAV);
+            postService.save(post1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        modelAndView.addObject("post",post1);
         return modelAndView;
     }
-
 
     @PostMapping("/creat/comment")
     public ModelAndView homeComment( @ModelAttribute("idPost") Long id,  @ModelAttribute("content") String content){

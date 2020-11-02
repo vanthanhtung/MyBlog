@@ -214,7 +214,7 @@
 											</li>
 											<li>
 												<i class="ti-files"></i>
-												<a href="fav-page.html" title="">My pages</a>
+												<a href="/users/myhome" title="">My pages</a>
 											</li>
 											<li>
 												<i class="ti-user"></i>
@@ -284,8 +284,8 @@
 											<img src="images/resources/admin2.jpg" alt="">
 										</figure>
 										<div class="newpst-input">
-											<form method="post" action="/users/timeline/creat/post" th:object="${post}">
-												<textarea th:field="*{content}" rows="2" placeholder="write something"></textarea>
+											<form method="post" action="/users/timeline/creat/post" th:object="${post}" enctype="multipart/form-data">
+												<textarea th:field="*{content}" rows="2" placeholder="What do you feel today?"></textarea>
 												<div class="attachments">
 													<ul>
 														<li>
@@ -297,7 +297,7 @@
 														<li>
 															<i class="fa fa-image"></i>
 															<label class="fileContainer">
-																<input type="file">
+																<input type="file" name="postImageFile">
 															</label>
 														</li>
 														<li>
@@ -469,7 +469,7 @@
 												<a href="#" title=""><img src="images/resources/friend-avatar9.jpg" alt=""></a>
 											</figure>
 											<div class="page-meta">
-												<a href="#" title="" class="underline">My page</a>
+												<a href="/users/myhome" title="" class="underline">My page</a>
 												<span><i class="ti-comment"></i><a href="insight.html" title="">Messages <em>9</em></a></span>
 												<span><i class="ti-bell"></i><a href="insight.html" title="">Notifications <em>2</em></a></span>
 											</div>
