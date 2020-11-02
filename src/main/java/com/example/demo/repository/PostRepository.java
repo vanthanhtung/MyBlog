@@ -1,14 +1,9 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.AppUser;
-import com.example.demo.model.CommentPost;
 import com.example.demo.model.Post;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-import java.util.List;
-
-public interface PostRepository extends CrudRepository<Post, Long> {
-//    Iterable<CommentPost> getAllByPost_id(Long id);
+public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
     Iterable<Post> getAllByAppUser(AppUser appUser);
 }
