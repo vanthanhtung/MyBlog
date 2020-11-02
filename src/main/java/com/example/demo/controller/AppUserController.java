@@ -177,4 +177,18 @@ public class AppUserController {
     public String trangchu(){
         return "timeline";
     }
+
+    @GetMapping("/delete-post/{id}")
+    public ModelAndView deletePost(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/users/myhome");
+        postService.remove(id);
+        return modelAndView;
+    }
+
+    @GetMapping("/delete-comment/{id}")
+    public ModelAndView deleteComment(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/users/myhome");
+        commentPostService.remove(id);
+        return modelAndView;
+    }
 }

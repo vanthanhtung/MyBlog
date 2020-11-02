@@ -428,8 +428,6 @@
 																	<ins>số comment</ins>
 																</span>
 																</li>
-
-<!--																-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 																<li class="social-media">
 																	<div class="menu">
 																		<div class="btn trigger"><i class="fa fa-share-alt"></i></div>
@@ -464,13 +462,12 @@
 																	</div>
 																</li>
 <!--																cái này đẹp đẹp này-->
-<!--																-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--															-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+																<a th:href="@{/users/delete-post/__${myPosts.getPost_id()}__}"><i class='fas fa-trash-alt'></i></a>
 															</ul>
 														</div>
 													</div>
 												</div>
-
-
 												<div class="coment-area" >
 													<ul class="we-comet">
 														<th:block th:each="commentt : ${myPosts.getCommentPosts()}">
@@ -485,6 +482,7 @@
 																		<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
 																	</div>
 																	<p th:text="*{commentt.content}"></p>
+																	<a th:href="@{/users/delete-comment/__${commentt.getComment_id()}__}"><i class='fas fa-trash-alt'></i></a>
 																</div>
 															</li>
 														</th:block>
@@ -697,3 +695,4 @@
 	<script src="/js/script.js"></script>
 </body>
 </html>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
