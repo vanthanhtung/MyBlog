@@ -17,6 +17,7 @@ package com.example.demo.controller;
 
         import java.io.File;
         import java.nio.file.Files;
+        import java.time.LocalDateTime;
         import java.util.Iterator;
         import java.util.List;
         import java.util.Map;
@@ -45,13 +46,13 @@ public class AppUserFreindController {
 
     @ModelAttribute("listPost")
     public Iterable<Post> listPost(){
-        Iterable<Post> listPost= postService.findAll();
+        Iterable<Post> listPost= postService.getAllByOrderByDateDesc();
         return listPost;
     }
 
     @ModelAttribute("myListPost")
     public Iterable<Post> MylistPost(){
-        Iterable<Post> listPost = postService.getAllByAppUser(appUserService.getCurrentUser());
+        Iterable<Post> listPost = postService.getAllByAppUserOrderByDateDesc(appUserService.getCurrentUser());
         return listPost;
     }
 
@@ -70,6 +71,7 @@ public class AppUserFreindController {
     public ModelAndView homePost(@ModelAttribute("post") Post post, @ModelAttribute("postImageFile") MultipartFile postImageFile){
         ModelAndView modelAndView = new ModelAndView("redirect:/users/timeline");
         post.setAppUser(appUserService.getCurrentUser());
+        post.setDate(LocalDateTime.now());
         Post post1 = postService.save(post);
         post1.setPostImageFile(postImageFile);
         Cloudinary c = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);
@@ -126,7 +128,7 @@ public class AppUserFreindController {
         ModelAndView modelAndView = new ModelAndView("friendHome");
         AppUser user = appUserService.findById(id).get();
         modelAndView.addObject("searchUserById", user);
-        Iterable<Post> listPost = postService.getAllByAppUser(user);
+        Iterable<Post> listPost = postService.getAllByAppUserOrderByDateDesc(user);
         modelAndView.addObject("searchListPostById", listPost);
         return modelAndView;
     }

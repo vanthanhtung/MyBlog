@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Data @AllArgsConstructor
@@ -16,7 +17,7 @@ public class CommentPost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comment_id;
-    private Date comment_date;
+    private LocalDateTime date;
     private String content;
     private String noti;
 

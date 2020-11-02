@@ -400,7 +400,7 @@
 													</figure>
 													<div class="friend-name">
 														<ins><a th:href="@{/users/timeline/search/__${myPosts.getAppUser().getAppUser_id()}__}" title="" th:text="*{myPosts.getAppUser().name}"></a></ins>
-														<span>thời gian đăng bài</span>
+														<span th:text="${myPosts.getDate()}"></span>
 													</div>
 													<div class="description">
 														<p th:text="*{myPosts.getContent()}"></p>

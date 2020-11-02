@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -97,13 +98,13 @@ public class AppUserController {
 
     @ModelAttribute("myListPost")
     public Iterable<Post> MylistPost(){
-        Iterable<Post> listPost = postService.getAllByAppUser(appUserService.getCurrentUser());
+        Iterable<Post> listPost = postService.getAllByAppUserOrderByDateDesc(appUserService.getCurrentUser());
         return listPost;
     }
 
     @ModelAttribute("listPost")
     public Iterable<Post> listPost(){
-        Iterable<Post> listPost= postService.findAll();
+        Iterable<Post> listPost= postService.getAllByOrderByDateDesc();
         return listPost;
     }
 
@@ -122,6 +123,7 @@ public class AppUserController {
     public ModelAndView homePost(@ModelAttribute("post") Post post, @ModelAttribute("postImageFile") MultipartFile postImageFile){
         ModelAndView modelAndView = new ModelAndView("redirect:/users");
         post.setAppUser(appUserService.getCurrentUser());
+        post.setDate(LocalDateTime.now());
         Post post1 = postService.save(post);
         post1.setPostImageFile(postImageFile);
         Cloudinary c = new Cloudinary("cloudinary://" + mApiKey + ":" + mApiSecret + "@" + mCloudName);

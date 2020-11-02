@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Post {
     private Long post_id;
     private String title;
     private String content;
-    private Date post_date;
+    private LocalDateTime date;
     private String postImage;
 
     @Transient

@@ -39,8 +39,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Iterable<Post> getAllByAppUser(AppUser user) {
-        return postService.getAllByAppUser(user);
+    public Iterable<Post> getAllByAppUserOrderByDateDesc(AppUser user) {
+        return postService.getAllByAppUserOrderByDateDesc(user);
+    }
+
+    @Override
+    public Iterable<Post> getAllByOrderByDateDesc() {
+        return postService.getAllByOrderByDateDesc();
     }
 
 }
